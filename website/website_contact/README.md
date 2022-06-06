@@ -1,1 +1,1 @@
-Module qui utilise le snippet natif bar de recherche. Ici, on intègre le modèle res.partner
+Module that uses the native search bar snippet. Here, we integrate the res.partner model
