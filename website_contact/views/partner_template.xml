@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <template id="contact_list">
+      <div class="row">
+        <t t-foreach="contacts" t-as="partner">
+          <div class="card contact-card">
+            <img t-att-src="'/web/image/res.partner/%s/avatar_512'%partner.id"
+                 class="card-img-top contact-img"
+                 t-att-alt="'%s avatar image'%partner.name"/>
+            <div class="card-body">
+              <h5 class="card-title contact-name">
+                <a t-att-href="partner.website_url"
+                   t-esc="partner.name"/>
+              </h5>
+              <p class="card-text">
+                <ul class="list-unstyled">
+                  <li t-if="partner.function">
+                    <i class="fa fa-solid fa-briefcase"></i>
+                    <span t-esc="partner.function"/>
+                  </li>
+                  <li t-if="partner.street">
+                    <i class="fa fa-solid fa-street-view"></i>
+                    <span t-esc="partner.street"/>
+                  </li>
+                </ul>
+              </p>
+            </div>
+          </div>
+        </t>
+      </div>
+    </template>
+    <template id="index" name="Contact">
+      <t t-call="website.layout">
+        <div class="wrap container">
+          <div class="contact-search-box">
+            <t t-call="website.website_search_box_input">
+              <t t-set="_submit_classes" t-valuef="btn-link text-white rounded-0 pr-1"/>
+              <t t-set="search_type" t-valuef="contact"/>
+              <t t-set="action" t-valuef="/website/contact"/>
+              <t t-set="display_description" t-valuef="true"/>
+              <t t-set="placeholder">Search contact</t>
+            </t>
+          </div>
+          <t t-call="website_contact.contact_list"/>
+          <t t-call="website.pager">
+            <t t-set="classname" t-valuef="justify-content-center"/>
+          </t>
+        </div>
+      </t>
+    </template>
+  </data>
+</odoo>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <template id="contact_searchbar_input_snippet_options"
+            inherit_id="website.searchbar_input_snippet_options"
+            name="contact search bar snippet options">
+    <xpath expr="//div[@data-js='SearchBar']/we-select[@data-name='scope_opt']" position="inside">
+      <we-button data-set-search-type="contact"
+                 data-select-data-attribute="contact"
+                 data-name="search_contact_opt"
+                 data-form-action="/website/contact">Contact
+      </we-button>
+    </xpath>
+    <xpath expr="//div[@data-js='SearchBar']/we-select[@data-name='order_opt']" position="inside">
+      <we-button data-set-order-by="create_date asc"
+                 data-select-data-attribute="create_date asc"
+                 data-dependencies="search_contact_opt"
+                 data-name="order_create_date_asc_opt">Date (old to new)
+      </we-button>
+      <we-button data-set-order-by="create_date desc"
+                 data-select-data-attribute="create_date desc"
+                 data-dependencies="search_contact_opt"
+                 data-name="order_create_date_desc_opt">Date (new to old)
+      </we-button>
+    </xpath>
+    <xpath expr="//div[@data-js='SearchBar']/div[@data-dependencies='limit_opt']" position="inside">
+      <we-checkbox string="Function"
+                   data-dependencies="search_contact_opt"
+                   data-select-data-attribute="true"
+                   data-attribute-name="displayDescription"
+                   data-apply-to=".search-query"/>
+      <we-checkbox string="Image"
+                   data-dependencies="search_contact_opt"
+                   data-select-data-attribute="true"
+                   data-attribute-name="displayImage"
+                   data-apply-to=".search-query"/>
+    </xpath>
+  </template>
+</odoo>
